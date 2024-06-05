@@ -26,6 +26,7 @@ export class CreateUserDto {
 
     @IsEnum(UserRole)
     @IsNotEmpty()
+    @IsOptional()
     role?:UserRole.USER
 
     @IsOptional()

@@ -27,6 +27,7 @@ export class CreateDoctorDto {
     readonly especialidad:EspecialidadDoctors
 
     @IsNotEmpty()
+    @IsOptional()
     @IsEnum(UserRole)
     readonly role?:UserRole.DOCTOR
 

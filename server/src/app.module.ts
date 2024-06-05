@@ -4,7 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorsModule } from './doctors/doctors.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 @Module({
-  imports: [UsersModule,
+  imports: [
+    UsersModule,
+    DoctorsModule,
+    AppointmentsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -16,8 +19,6 @@ import { AppointmentsModule } from './appointments/appointments.module';
       synchronize: true,
       // Solo en desarrollo el sync porque en producion podemos perder lso datos.
     }),
-    DoctorsModule,
-    AppointmentsModule
   ],
   controllers: [],
   providers: [],

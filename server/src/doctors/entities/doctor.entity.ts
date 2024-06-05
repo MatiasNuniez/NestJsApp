@@ -21,7 +21,7 @@ export class Doctor {
         enum: UserRole,
         default: UserRole.DOCTOR
     })
-    role: UserRole;
+    role?: UserRole;
 
     @Column()
     phone: string
@@ -30,7 +30,7 @@ export class Doctor {
     especialidad: string
 
     @Column({ default: true })
-    status: Boolean;
+    status?: Boolean;
 
     @OneToMany(() => Appointment, appointment => appointment.doctor)
     appointments: Appointment[];
