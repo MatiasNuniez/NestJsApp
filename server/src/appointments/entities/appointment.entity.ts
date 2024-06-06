@@ -17,7 +17,7 @@ export class Appointment {
 
     @Column()
     detalles: string;
-
+    
     @ManyToOne(() => Doctor, doctor => doctor.appointments)
     @JoinColumn({ name: 'doctor_id' })
     doctor: Doctor;
