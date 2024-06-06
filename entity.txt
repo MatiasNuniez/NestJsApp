@@ -1,3 +1,0 @@
-El patron repositorio es el patron que se usa en las entitys.
-Hace una capa intermedia, entre nosotros y la base de datos.
-Ventajas:Abstraccion de la base de datos, reutilizacion de codigo, separacion de de responsabilidades, facilita las pruebas unitarias y mejora la seguridad.
