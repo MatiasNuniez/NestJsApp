@@ -21,8 +21,7 @@ export class AppointmentsService {
 
   async create(createAppointmentDto: CreateAppointmentDto) {
     const { user_id, doctor_id, ...rest } = createAppointmentDto;
-
-    // Busca el usuario y el doctor por sus IDs
+    
     const user = await this.userRepository.findOne({ where: { id: user_id } });
     const doctor = await this.doctorRepository.findOne({ where: { id: doctor_id } });
 
