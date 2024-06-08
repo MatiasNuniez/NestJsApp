@@ -3,6 +3,9 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorsModule } from './doctors/doctors.module';
 import { AppointmentsModule } from './appointments/appointments.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 @Module({
   imports: [
     UsersModule,
@@ -15,12 +18,12 @@ import { AppointmentsModule } from './appointments/appointments.module';
       username: 'nestUser',
       password: '123',
       database: 'nestDb',
-      autoLoadEntities:true,
+      autoLoadEntities: true,
       synchronize: true,
-      // Solo en desarrollo el sync porque en producion podemos perder lso datos.
     }),
+    AuthModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AuthController],
+  providers: [AuthService],
 })
 export class AppModule {}

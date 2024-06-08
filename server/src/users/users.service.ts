@@ -9,8 +9,7 @@ import { User } from './entities/user.entity';
 export class UsersService {
 
   constructor(@InjectRepository(User)
-  private readonly userRepository: Repository<User>)
-  {}
+  private readonly userRepository: Repository<User>) { }
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -33,6 +32,22 @@ export class UsersService {
   findOne(id: number) {
     return `This action returns a #${id} user`;
   }
+
+  async findOneByEmail(email: string) {
+    try {
+        const res = await this.userRepository.findOne({ where: { email }})
+        if (res) {
+            return {
+                status: true,
+                password: res.password
+            };
+        } else {
+            throw new Error('Usuario no encontrado');
+        }
+    } catch (error) {
+        throw new Error('Error al buscar el usuario por correo electrónico');
+    }
+}
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
