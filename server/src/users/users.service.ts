@@ -37,10 +37,7 @@ export class UsersService {
     try {
         const res = await this.userRepository.findOne({ where: { email }})
         if (res) {
-            return {
-                status: true,
-                password: res.password
-            };
+            return { res };
         } else {
             throw new Error('Usuario no encontrado');
         }
