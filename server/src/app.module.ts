@@ -6,6 +6,9 @@ import { AppointmentsModule } from './appointments/appointments.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 @Module({
   imports: [
     UsersModule,
@@ -13,11 +16,11 @@ import { AuthService } from './auth/auth.service';
     AppointmentsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'nestUser',
-      password: '123',
-      database: 'nestDb',
+      host: process.env.HOST,
+      port: parseInt(process.env.PORT),
+      username: process.env.USERNAMEDATABASE,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       autoLoadEntities: true,
       synchronize: true,
     }),
