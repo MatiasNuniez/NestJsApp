@@ -35,16 +35,16 @@ export class UsersService {
 
   async findOneByEmail(email: string) {
     try {
-        const res = await this.userRepository.findOne({ where: { email }})
-        if (res) {
-            return { res };
-        } else {
+        const user = await this.userRepository.findOne({ where: { email } });
+        if (!user) {
             throw new Error('Usuario no encontrado');
         }
+        return user;
     } catch (error) {
         throw new Error('Error al buscar el usuario por correo electrónico');
     }
 }
+
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
