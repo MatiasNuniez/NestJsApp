@@ -47,12 +47,8 @@ export class AuthService {
             
             if (user && user.status && await bcrypt.compare(loginDto.password, user.password)) {
                 const payload = { sub: user.id, username: user.name };
-                console.log(payload);
-                const token = this.jwtService.sign(payload)
-                console.log(token);
                 return {
-                    hola:'hola'
-                    // access_token: await this.jwtService.signAsync(payload)
+                    access_token: await this.jwtService.signAsync(payload)
                 };
             } else {
                 throw new UnauthorizedException('Credenciales inválidas');
