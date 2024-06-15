@@ -22,9 +22,10 @@ dotenv.config()
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
       autoLoadEntities: true,
+      entities: ["dist/**/*.entity{.ts,.js}"],
       synchronize: true,
     }),
-    AuthModule,
+    AuthModule
   ],
   controllers: [AuthController],
   providers: [AuthService],

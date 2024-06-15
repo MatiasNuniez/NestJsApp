@@ -39,12 +39,11 @@ export class AuthService {
             }
         }
     }
+    
 
-
-    async login(loginDto: LoginDto) {
+    async login(loginDto: LoginDto) {        
+        const user = await this.doctorService.findOneByEmail(loginDto.email) || await this.userService.findOneByEmail(loginDto.email);
         try {
-            const user = await this.userService.findOneByEmail(loginDto.email);
-            
             if (user && user.status && await bcrypt.compare(loginDto.password, user.password)) {
                 const payload = { sub: user.id, username: user.name };
                 return {
@@ -57,5 +56,4 @@ export class AuthService {
             throw new InternalServerErrorException('Error al iniciar sesión');
         }
     }
-
 }

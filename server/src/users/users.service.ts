@@ -37,11 +37,11 @@ export class UsersService {
     try {
         const user = await this.userRepository.findOne({ where: { email } });
         if (!user) {
-            throw new Error('Usuario no encontrado');
+            return false
         }
         return user;
     } catch (error) {
-        throw new Error('Error al buscar el usuario por correo electrónico');
+        return false
     }
 }
 

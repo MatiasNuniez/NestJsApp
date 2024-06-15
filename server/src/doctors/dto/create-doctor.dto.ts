@@ -7,6 +7,7 @@ export class CreateDoctorDto {
     @IsNotEmpty()
     readonly name:string;
 
+    @IsString()
     @IsEmail()
     @IsNotEmpty()
     readonly email:string;

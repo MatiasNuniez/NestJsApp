@@ -15,6 +15,7 @@ export class CreateUserDto {
     @MaxLength(10)
     readonly phone:string;
 
+    @IsString()
     @IsEmail()
     @IsNotEmpty()
     readonly email:string;

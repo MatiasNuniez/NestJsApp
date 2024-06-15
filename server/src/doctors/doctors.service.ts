@@ -24,6 +24,18 @@ export class DoctorsService {
     return `This action returns all doctors`;
   }
 
+  async findOneByEmail(email: string) {
+    try {
+      const user = await this.doctorRepository.findOne({ where: { email } });
+      if (!user) {
+        return false
+      }
+      return user;
+    } catch (error) {
+      return false
+    }
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} doctor`;
   }
