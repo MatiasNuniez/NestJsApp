@@ -42,6 +42,9 @@ export const Login: React.FC = () => {
                 <View style={{ width: '100%', alignItems: 'center', gap: 20 }}>
                     <TextInput style={loginStyles.inputLogin} placeholder="Email" value={email} onChangeText={setEmail} textContentType="emailAddress" />
                     <TextInput secureTextEntry={true} style={loginStyles.inputLogin} placeholder="Contraseña" value={password} onChangeText={setPassword} textContentType="password" />
+                    <TouchableOpacity onPress={login}>
+                    <Text style={loginStyles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
+                </TouchableOpacity>
                 </View>
 
                 <Pressable onPress={login} style={loginStyles.buttonInput}>
