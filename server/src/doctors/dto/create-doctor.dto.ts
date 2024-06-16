@@ -8,6 +8,12 @@ export class CreateDoctorDto {
     readonly name:string;
 
     @IsString()
+    @IsNotEmpty()
+    @MinLength(10)
+    @MaxLength(10)
+    readonly phone:string;
+
+    @IsString()
     @IsEmail()
     @IsNotEmpty()
     readonly email:string;
@@ -16,12 +22,6 @@ export class CreateDoctorDto {
     @IsNotEmpty()
     @MinLength(6)
     readonly password:string;
-
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(10)
-    @MaxLength(10)
-    readonly phone:string;
 
     @IsNotEmpty()
     @IsEnum(EspecialidadDoctors)

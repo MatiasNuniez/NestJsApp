@@ -47,3 +47,55 @@ export const loginStyles = StyleSheet.create({
     }
 
 })
+
+export const preRegisterStyles = StyleSheet.create({
+    container:{
+        justifyContent:'center'
+    },
+    text:{
+        fontWeight:'bold',
+        fontSize:25
+    },
+    selectContainer:{
+        height: '50%',
+        justifyContent:'space-between',
+        marginTop:60
+    },
+    select:{
+        padding:30,
+        backgroundColor:colors.verdeInput,
+        borderRadius:12,
+        alignItems:'center'
+    },
+    selectText:{
+        fontWeight:'bold',
+        fontSize:20
+    }
+})
+
+export const stylesRegister = StyleSheet.create({
+    content:{
+        justifyContent:'center',
+        textAlign:'center',
+        width:'70%',
+        height:'40%',
+        gap:15,
+    },
+    inputText:{
+        backgroundColor:colors.verdeInput,
+        padding:10,
+        borderRadius:10,
+        fontWeight:'bold'
+    },
+    button:{
+        backgroundColor:colors.verdeBoton,
+        width:'70%',
+        padding:25,
+        borderRadius:10,
+        alignItems:'center',
+        marginTop:55
+    },
+    textButton:{
+        fontWeight:'bold'
+    }
+})
