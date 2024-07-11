@@ -1,8 +1,11 @@
 import { View, TextInput, Text, Pressable, TouchableOpacity, Image, Alert } from "react-native";
 import { loginStyles } from "../../styles/styles";
 import { useState } from "react";
+import { EXPO_PUBLIC_API_URL } from "../../utils/enviroment";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LoginProps } from "../../../App";
 
-export const Login: React.FC = () => {
+export const Login = ({ navigation }: LoginProps) => {
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -11,12 +14,12 @@ export const Login: React.FC = () => {
 
         if (email !== '' && password !== '') {
             try {
-                const res = await fetch('http://10.0.2.2:3000/auth/login', {
+                const res = await fetch(`${EXPO_PUBLIC_API_URL}auth/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ email, password })                
+                    body: JSON.stringify({ email, password })
                 });
                 const data = await res.json();
                 console.log(data);
@@ -25,15 +28,15 @@ export const Login: React.FC = () => {
                 console.log('Error al iniciar sesión:', error);
                 Alert.alert('Error', 'Hubo un problema al iniciar sesión');
             }
-        }else{
+        } else {
             Alert.alert('Por favor ingrese email y contraseña');
             return;
         }
-};
+    };
 
     return (
 
-        <View style={loginStyles.container}>
+        <SafeAreaView style={loginStyles.container}>
 
             <View style={loginStyles.loginContainer}>
 
@@ -42,21 +45,21 @@ export const Login: React.FC = () => {
                 <View style={{ width: '100%', alignItems: 'center', gap: 20 }}>
                     <TextInput style={loginStyles.inputLogin} placeholder="Email" value={email} onChangeText={setEmail} textContentType="emailAddress" />
                     <TextInput secureTextEntry={true} style={loginStyles.inputLogin} placeholder="Contraseña" value={password} onChangeText={setPassword} textContentType="password" />
-                <TouchableOpacity onPress={login}>
-                    <Text style={loginStyles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={login}>
+                        <Text style={loginStyles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <Pressable onPress={login} style={loginStyles.buttonInput}>
                     <Text style={loginStyles.textButton}>Login</Text>
                 </Pressable>
 
-                <TouchableOpacity onPress={login}>
+                <TouchableOpacity onPress={() => navigation.navigate("RegisterOption")}>
                     <Text>¿No tienes una cuenta? Registrate <Text style={loginStyles.forgotPassword}>aqui</Text></Text>
                 </TouchableOpacity>
 
             </View>
 
-        </View>
+        </SafeAreaView>
     )
 }

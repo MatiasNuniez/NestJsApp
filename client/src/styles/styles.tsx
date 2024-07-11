@@ -23,7 +23,7 @@ export const loginStyles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         alignItems: 'center',
-        height: '60%'
+        height: '80%'
     },
 
     inputLogin: {
@@ -50,16 +50,19 @@ export const loginStyles = StyleSheet.create({
 
 export const preRegisterStyles = StyleSheet.create({
     container:{
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center'
     },
     text:{
         fontWeight:'bold',
-        fontSize:25
+        fontSize:25,
+        textAlign:'center'
     },
     selectContainer:{
-        height: '50%',
+        textAlign:'center',
+        height: '80%',
+        width:'80%',
         justifyContent:'space-between',
-        marginTop:60
     },
     select:{
         padding:30,
@@ -76,9 +79,8 @@ export const preRegisterStyles = StyleSheet.create({
 export const stylesRegister = StyleSheet.create({
     content:{
         justifyContent:'center',
-        textAlign:'center',
-        width:'70%',
-        height:'40%',
+        width:'100%',
+        height:'80%',
         gap:15,
     },
     inputText:{
@@ -88,6 +90,7 @@ export const stylesRegister = StyleSheet.create({
         fontWeight:'bold'
     },
     button:{
+        alignSelf:'center',
         backgroundColor:colors.verdeBoton,
         width:'70%',
         padding:25,
@@ -96,6 +99,17 @@ export const stylesRegister = StyleSheet.create({
         marginTop:55
     },
     textButton:{
+        fontWeight:'bold'
+    }
+})
+
+export const styleProfile = StyleSheet.create({
+    container:{
+        justifyContent:'space-between',
+        height:'30%'
+    },
+    text:{
+        color:colors.verdeBoton,
         fontWeight:'bold'
     }
 })
