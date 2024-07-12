@@ -3,6 +3,7 @@ import { ProfileDoctor } from "../../interfaces/interfaces"
 import { Text } from "react-native"
 import { styleProfile } from "../../styles/styles"
 
+
 interface dataProp {
     data:ProfileDoctor
 }

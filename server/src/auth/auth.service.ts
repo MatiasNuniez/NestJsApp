@@ -42,10 +42,10 @@ export class AuthService {
     
 
     async login(loginDto: LoginDto) {        
-        const user = await this.doctorService.findOneByEmail(loginDto.email) || await this.userService.findOneByEmail(loginDto.email);
+        const user = await this.doctorService.findOneByEmail(loginDto.email) || await this.userService.findOneByEmail(loginDto.email)
         try {
-            if (user && user.status && await bcrypt.compare(loginDto.password, user.password)) {
-                const payload = { sub: user.id, username: user.name };
+            if (user && user.status && (await bcrypt.compare(loginDto.password, user.password))) {
+                const payload = { sub: user.id, username: user.name };    
                 return {
                     access_token: await this.jwtService.signAsync(payload)
                 };

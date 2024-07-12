@@ -5,7 +5,6 @@ import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navig
 import { Register } from './src/components/register/register';
 import { Navigation } from './src/navigation/navigation';
 
-
 type RootStackParamList = {
   Login: undefined;
   RegisterOption: undefined;
@@ -23,6 +22,7 @@ export type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>
 
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
@@ -31,7 +31,11 @@ export default function App() {
           <Stack.Screen name="RegisterOption" component= {Pre_register} />
           <Stack.Screen name='Register' component= {Register} />
         </Stack.Group>
-        <Stack.Screen name="Index" component = {Navigation}/>
+        <Stack.Group >
+          <Stack.Screen name="Index" component = {Navigation} options={{
+            headerBackVisible: false
+          }}/>
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   )

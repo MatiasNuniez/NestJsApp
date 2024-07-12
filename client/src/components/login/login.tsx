@@ -1,14 +1,35 @@
 import { View, TextInput, Text, Pressable, TouchableOpacity, Image, Alert } from "react-native";
 import { loginStyles } from "../../styles/styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EXPO_PUBLIC_API_URL } from "../../utils/enviroment";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LoginProps } from "../../../App";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Login = ({ navigation }: LoginProps) => {
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [token, setToken] = useState<string>('');
+
+
+    const loadToken = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      } catch (error) {
+        console.error('Failed to load the token:', error);
+      }
+    };
+  
+    useEffect(() => {
+      loadToken();
+      if (token){
+        navigation.navigate('Index')
+      }
+    }, [token])
 
     const login = async () => {
 
@@ -22,7 +43,7 @@ export const Login = ({ navigation }: LoginProps) => {
                     body: JSON.stringify({ email, password })
                 });
                 const data = await res.json();
-                console.log(data);
+                setToken(data.access_token);
                 Alert.alert('Inicio de sesion exitoso');
             } catch (error) {
                 console.log('Error al iniciar sesión:', error);
@@ -35,9 +56,7 @@ export const Login = ({ navigation }: LoginProps) => {
     };
 
     return (
-
         <SafeAreaView style={loginStyles.container}>
-
             <View style={loginStyles.loginContainer}>
 
                 <Image source={require('../../../assets/doctor.jpg')} style={{ width: 200, height: 200 }} />
