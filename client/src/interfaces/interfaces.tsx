@@ -1,4 +1,4 @@
-import { EspecialidadDoctors } from "../components/register/enum/enums";
+import { EspecialidadDoctors, statusAppo } from "../components/register/enum/enums";
 
 export interface ProfileUser { 
     name: string;

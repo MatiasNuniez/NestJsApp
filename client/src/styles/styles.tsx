@@ -113,3 +113,28 @@ export const styleProfile = StyleSheet.create({
         fontWeight:'bold'
     }
 })
+
+export const stylesItem = StyleSheet.create({
+    item: {
+      backgroundColor: colors.verdeInput,
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+      borderRadius:15
+    },
+    text:{
+        fontWeight:'bold'
+    }
+  });
+
+export const styleAppo = StyleSheet.create({
+    container:{
+        flex:1
+    },
+    press:{
+        padding:20,
+        backgroundColor:colors.verdeBoton,
+        borderRadius:10,
+        marginBottom:10
+    }
+})

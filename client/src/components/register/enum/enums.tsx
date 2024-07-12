@@ -40,3 +40,8 @@ export enum userOrDoc {
     user = 'user',
     doctor = 'doctor'
 }
+
+export enum statusAppo {
+  VIGENTE = 'Vigente',
+  FINALIZADO = 'Finalizado'
+}
