@@ -34,14 +34,3 @@ export enum EspecialidadDoctors {
     UROLOGIA = 'Urologia',
     GENERAL = 'General'
   }
-
-export enum userOrDoc {
-    admin = 'admin',
-    user = 'user',
-    doctor = 'doctor'
-}
-
-export enum statusAppo {
-  VIGENTE = 'Vigente',
-  FINALIZADO = 'Finalizado'
-}

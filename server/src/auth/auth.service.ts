@@ -20,9 +20,9 @@ export class AuthService {
                     ...createUserOrDoctor,
                     password: hashedPassword,
                 });
-                return newUser;
+                return {status:true, data: newUser};
             } catch (error) {
-                throw new Error('Error al doctor')
+                throw new Error('Error al registrar doctor')
             }
 
         } else {
@@ -33,7 +33,7 @@ export class AuthService {
                     ...createUserOrDoctor,
                     password: hashedPassword,
                 });
-                return newUser;
+                return {status: true, data: newUser};
             } catch (error) {
                 throw new Error('Error al registrar usuario')
             }
@@ -47,7 +47,7 @@ export class AuthService {
             if (user && user.status && (await bcrypt.compare(loginDto.password, user.password))) {
                 const payload = { sub: user.id, username: user.name };    
                 return {
-                    access_token: await this.jwtService.signAsync(payload)
+                    status:true, access_token: await this.jwtService.signAsync(payload)
                 };
             } else {
                 throw new UnauthorizedException('Credenciales inválidas');
