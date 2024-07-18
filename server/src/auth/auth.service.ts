@@ -13,6 +13,8 @@ export class AuthService {
 
     async register(createUserOrDoctor: CreateUserOrDoctorDto) {
         if (createUserOrDoctor.role === 'doctor') {
+            console.log(createUserOrDoctor);
+            
             try {
                 const salt = await bcrypt.genSalt();
                 const hashedPassword = await bcrypt.hash(createUserOrDoctor.password, salt);
@@ -20,6 +22,8 @@ export class AuthService {
                     ...createUserOrDoctor,
                     password: hashedPassword,
                 });
+                console.log(newUser);
+
                 return {status:true, data: newUser};
             } catch (error) {
                 throw new Error('Error al registrar doctor')
