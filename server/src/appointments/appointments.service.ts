@@ -42,8 +42,8 @@ export class AppointmentsService {
     return await this.appointmentRepository.save(appointment);
   }
 
-  findAll() {
-    return `This action returns all turnos`;
+  async findAll() {
+    return await this.appointmentRepository.find({})
   }
 
   findOne(id: number) {
