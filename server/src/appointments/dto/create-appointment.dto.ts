@@ -1,4 +1,4 @@
-import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsDateString, IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { statusAppo } from "src/enums/userRole";
 
 export class CreateAppointmentDto {
@@ -10,6 +10,11 @@ export class CreateAppointmentDto {
     @IsString()
     @IsNotEmpty()
     readonly detalles: string;
+
+    @IsString()
+    @IsEmail()
+    @IsNotEmpty()
+    readonly email: string;
 
     @IsEnum(statusAppo)
     @IsNotEmpty()

@@ -4,8 +4,9 @@ import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Appointment } from './entities/appointment.entity';
-import { User } from 'src/users/entities/user.entity';
 import { Doctor } from 'src/doctors/entities/doctor.entity';
+import { User } from 'src/user/entities/user.entity';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AppointmentsService {
@@ -13,41 +14,50 @@ export class AppointmentsService {
   constructor(
     @InjectRepository(Appointment)
     private readonly appointmentRepository: Repository<Appointment>,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
     @InjectRepository(Doctor)
     private readonly doctorRepository: Repository<Doctor>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+    private readonly userService: UserService
   ) { }
 
   async create(createAppointmentDto: CreateAppointmentDto) {
-    const { user_id, doctor_id, ...rest } = createAppointmentDto;
-    
-    const user = await this.userRepository.findOne({ where: { id: user_id } });
-    const doctor = await this.doctorRepository.findOne({ where: { id: doctor_id } });
 
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
+    return {msj:'hola'}
+    // const { doctor_id, email, ...rest } = createAppointmentDto
 
-    if (!doctor) {
-      throw new NotFoundException('Doctor not found');
-    }
+    // const userExist = await this.userService.findOneByEmail(email)
+    // const doctor = await this.doctorRepository.findOne({ where: { id: doctor_id } })
 
-    const appointment = this.appointmentRepository.create({
-      ...rest,
-      user,
-      doctor,
-    });
+    // if(!doctor){
+    //   throw new NotFoundException('Doctor not found')
+    // }
 
-    return await this.appointmentRepository.save(appointment);
+    // if (userExist.status === true) {
+    //   const user = await this.userRepository.findOne({ where: { id: userExist.id } })
+    //   const appointment = this.appointmentRepository.create({
+    //     ...rest,
+    //       user,
+    //       doctor,
+    //     });
+    //   return await this.appointmentRepository.save(appointment);
+    // }else{
+    //   const user = this.userRepository.create()
+    //   const appointment = this.appointmentRepository.create({
+    //     ...rest,
+    //       user,
+    //       doctor,
+    //     });
+    //   return await this.appointmentRepository.save(appointment);
+    // }
   }
 
-  async findAll() {
-    return await this.appointmentRepository.find({})
+  findAll() {
+    return this.appointmentRepository.find()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} turno`;
+    return this.appointmentRepository.query(`SELECT * FROM appointment where doctor_id = ${id}`);
   }
 
   update(id: number, updateAppointmentDto: UpdateAppointmentDto) {

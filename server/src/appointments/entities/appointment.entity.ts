@@ -1,11 +1,10 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { statusAppo } from "src/enums/userRole";
 import { Doctor } from "src/doctors/entities/doctor.entity";
-import { User } from "src/users/entities/user.entity";
+import { User } from "src/user/entities/user.entity";
 
 @Entity()
 export class Appointment {
-
     @PrimaryGeneratedColumn()
     id: number
 
@@ -26,4 +25,3 @@ export class Appointment {
     @JoinColumn({ name: 'user_id' })
     user: User;
 }
-

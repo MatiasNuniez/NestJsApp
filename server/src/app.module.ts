@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorsModule } from './doctors/doctors.module';
 import { AppointmentsModule } from './appointments/appointments.module';
@@ -14,7 +14,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    UsersModule,
+    UserModule,
     DoctorsModule,
     AppointmentsModule,
     TypeOrmModule.forRootAsync({
@@ -33,6 +33,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
     }),
     AuthModule,
+    UserModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],

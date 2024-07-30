@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { userData } from './appointments.inteface'
 
-interface ProfileI {
+export const Profile: React.FC = () => {
 
-}
+  const [userData, setUserData] = useState<userData>()
 
-interface ProfileProps {
-  profileData: ProfileI;
-}
-
-
-export const Profile: React.FC<ProfileProps> = ({ profileData }) => {
+  useEffect(() => {
+    const user = localStorage.getItem('user')
+    console.log(user);
+    
+    if (user){
+      setUserData(JSON.parse(user))
+    }
+  }, [])
+  
 
   return (
 
@@ -18,10 +22,10 @@ export const Profile: React.FC<ProfileProps> = ({ profileData }) => {
         <img className="rounded-full" src="https://png.pngtree.com/png-vector/20191021/ourmid/pngtree-vector-doctor-icon-png-image_1834402.jpg" alt="Doctor" />
       </div>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className="whitespace-normal">Doctor | User :asdasdasd </h1>
-        <p className="whitespace-normal">Telefono: 3447566156</p>
-        <p className="whitespace-normal">Email: matiasnuniez192@gmail.com</p>
-        <p className="whitespace-normal">Especialidad: Fisiatria</p>
+        <h1 className="whitespace-normal">Doctor: {userData?.name}</h1>
+        <p className="whitespace-normal">Telefono: {userData?.phone}</p>
+        <p className="whitespace-normal">Email: {userData?.email}</p>
+        <p className="whitespace-normal">Especialidad: {userData?.especialidad}</p>
       </div>
     </div>
   )
