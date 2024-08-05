@@ -8,10 +8,10 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ appo }) => {
 
   return (
-    <div className='grid rows-3 gap-1 m-3 rounded-md min-h-48 max-h-52 drop-shadow-xl backdrop-blur-xl bg-white/50 hover:bg-white/80'>
-      <h1>{appo.fecha.split('T')[0]}</h1>
-      <p>{appo.detalles}</p>
-      <span>{appo.status}</span>
+    <div className='grid rows-3 gap-1 m-3 py-4 rounded-md min-h-24 max-h-52 max-w-52 drop-shadow-xl bg-green-300 hover:bg-green-200'>
+      <h1 className='rows-span-1'>{appo.userName}</h1>
+      <p className='rows-span-1'>{appo.fecha.split('T')[0]}</p>
+      <span className='rows-span-1'>{appo.hora}</span>
     </div>
   )
 }

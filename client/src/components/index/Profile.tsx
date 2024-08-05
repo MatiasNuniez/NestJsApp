@@ -7,8 +7,6 @@ export const Profile: React.FC = () => {
 
   useEffect(() => {
     const user = localStorage.getItem('user')
-    console.log(user);
-    
     if (user){
       setUserData(JSON.parse(user))
     }

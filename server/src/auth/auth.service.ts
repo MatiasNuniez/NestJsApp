@@ -49,6 +49,7 @@ export class AuthService {
                             phone: user.phone,
                             email: user.email,
                             especialidad: user.especialidad,
+                            id:user.id,
                             status: user.status
                         },
                         access_token: await this.jwtService.signAsync(payload)

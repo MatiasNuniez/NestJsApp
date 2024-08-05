@@ -2,6 +2,12 @@ import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString } from "c
 import { statusAppo } from "src/enums/userRole";
 
 export class UpdateAppointmentDto {
+
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly name: string
+    
     @IsDateString()
     @IsNotEmpty()
     @IsOptional()

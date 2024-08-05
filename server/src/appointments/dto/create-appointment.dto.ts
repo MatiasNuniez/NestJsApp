@@ -3,6 +3,11 @@ import { statusAppo } from "src/enums/userRole";
 
 export class CreateAppointmentDto {
 
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly name: string
+
     @IsDateString()
     @IsNotEmpty()
     readonly fecha: Date;
@@ -16,11 +21,15 @@ export class CreateAppointmentDto {
     @IsNotEmpty()
     readonly email: string;
 
+    @IsString()
+    @IsNotEmpty()
+    readonly hora: string
+
     @IsEnum(statusAppo)
     @IsNotEmpty()
     @IsOptional()
     readonly status?: statusAppo.VIGENTE;
-    
+
     @IsInt()
     @IsNotEmpty()
     readonly user_id: number;
@@ -28,5 +37,5 @@ export class CreateAppointmentDto {
     @IsInt()
     @IsNotEmpty()
     readonly doctor_id: number;
-    
+
 }

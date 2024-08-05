@@ -18,38 +18,36 @@ export class AppointmentsService {
     private readonly doctorRepository: Repository<Doctor>,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    private readonly userService: UserService
   ) { }
 
   async create(createAppointmentDto: CreateAppointmentDto) {
 
-    return {msj:'hola'}
-    // const { doctor_id, email, ...rest } = createAppointmentDto
+    const user = await this.userRepository.findOne({ where: { id: createAppointmentDto.user_id } })
+    const doctor = await this.doctorRepository.findOne({ where: { id: createAppointmentDto.doctor_id } })
 
-    // const userExist = await this.userService.findOneByEmail(email)
-    // const doctor = await this.doctorRepository.findOne({ where: { id: doctor_id } })
+    if (!doctor) {
+      throw new NotFoundException('Doctor not found')
+    }
+    if (!user) {
+      throw new NotFoundException('User not found')
+    }
 
-    // if(!doctor){
-    //   throw new NotFoundException('Doctor not found')
-    // }
+    try {
+      const appo = this.appointmentRepository.create({
+        fecha: createAppointmentDto.fecha,
+        detalles: createAppointmentDto.detalles,
+        hora: createAppointmentDto.hora,
+        status: createAppointmentDto.status,
+        doctor: doctor,
+        user: user,
+        userName: user.name
+      });
+      await this.appointmentRepository.save(appo)
+      return { appo: appo, status: true }
+    } catch (error) {
+      return { error: error, status: false }
+    }
 
-    // if (userExist.status === true) {
-    //   const user = await this.userRepository.findOne({ where: { id: userExist.id } })
-    //   const appointment = this.appointmentRepository.create({
-    //     ...rest,
-    //       user,
-    //       doctor,
-    //     });
-    //   return await this.appointmentRepository.save(appointment);
-    // }else{
-    //   const user = this.userRepository.create()
-    //   const appointment = this.appointmentRepository.create({
-    //     ...rest,
-    //       user,
-    //       doctor,
-    //     });
-    //   return await this.appointmentRepository.save(appointment);
-    // }
   }
 
   findAll() {

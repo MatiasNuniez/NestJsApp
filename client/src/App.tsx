@@ -10,7 +10,7 @@ import { VerifyEmail } from './components/appointments/VerifyEmail';
 
 export default function App() {
   return (
-    <>
+    <div className='container m-auto'>
       <Router>
         <Routes>
           <Route path='/Login' Component={ Login } />
@@ -21,6 +21,6 @@ export default function App() {
           
         </Routes>
       </Router>
-    </>
+    </div>
   )
 }

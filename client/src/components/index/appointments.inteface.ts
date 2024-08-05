@@ -1,8 +1,10 @@
 export interface Appointment {
+    userName:string
     id: number;
     fecha: string;
     status: string;
     detalles: string;
+    hora:string
   }
   
 export type Appointments = Appointment[];
